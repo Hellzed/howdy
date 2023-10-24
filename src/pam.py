@@ -6,11 +6,14 @@ import os
 import glob
 import syslog
 
-# pam-python is running python 2, so we use the old module here
-import ConfigParser
+if sys.version_info >= (3,):
+	import configparser
+else:
+	import ConfigParser as configparser
+
 
 # Read config from disk
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.read(os.path.dirname(os.path.abspath(__file__)) + "/config.ini")
 
 
